@@ -578,7 +578,7 @@ async function sendEmailToSubscribers(recipe) {
 }
 
 // Create a cron job to run every day at 00:00 (midnight) UTC
-cron.schedule('0 13 * * *', async () => {
+cron.schedule('*/5 * * * *', async () => {
     console.log("Running cron job for highest rated recipe...");
     try {
         const highestRatedRecipe = await getHighestRatedRecipe();
