@@ -555,13 +555,13 @@ async function sendEmailToSubscribers(recipe) {
                             <p style="font-size: 16px;">People loved this recipe! You should try this delicious dish:</p>
                             <h2 style="text-align: center;">${recipe.recipeName}</h2>
                             <img src="${recipe.imagePath}" alt="Recipe Image" style="display: block; margin: 0 auto; max-width: 100%; height: auto; max-height: 400px;" />
-                            <p style="text-align: center; font-size: 18px;">Rating: ${recipe.ratings}</p>
+                            <p style="text-align: center; font-size: 18px;">Rating: ${recipe.ratings.toFixed(2)}</p>
                             <p style="font-size: 16px;">Ingredients: ${recipe.ingredients}</p>
                             <p style="font-size: 16px;"><strong>Instructions:</strong></p>
                             <ul style="font-size: 14px; padding-left: 20px; line-height: 1.6;">
                                 ${recipe.instructions}
                             </ul>
-                            <p style="font-size: 14px; text-align: center;">Explore more recipes on our website: <a href="http://example.com" style="color: #3498db; text-decoration: none;">Favour Fusion</a></p>
+                            <p style="font-size: 14px; text-align: center;">Explore more recipes on our website: <a href="https://favourfusion.netlify.app/" style="color: #3498db; text-decoration: none;">Favour Fusion</a></p>
                             <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
                             <p style="font-size: 12px; color: #888; text-align: center;">You received this email because you subscribed to our newsletter. If you wish to unsubscribe, <a href="#" style="color: #888; text-decoration: none;">click here</a>.</p>
                         </div>
@@ -578,7 +578,7 @@ async function sendEmailToSubscribers(recipe) {
 }
 
 // Create a cron job to run every day at 00:00 (midnight) UTC
-cron.schedule('*/5 * * * *', async () => {
+cron.schedule('0 15 * * *', async () => {
     console.log("Running cron job for highest rated recipe...");
     try {
         const highestRatedRecipe = await getHighestRatedRecipe();
@@ -721,7 +721,7 @@ const api = axios.create({
       const response = await api.get('/mealplanner/generate', { params });
   
       // Log parameters and send response data
-    //   console.log('Request Parameters:', params);
+      console.log('Request Parameters:', params);
       res.json(response.data);
     } catch (error) {
       // Handle errors
