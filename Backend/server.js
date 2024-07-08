@@ -721,7 +721,7 @@ const api = axios.create({
       const response = await api.get('/mealplanner/generate', { params });
   
       // Log parameters and send response data
-      console.log('Request Parameters:', params);
+    //   console.log('Request Parameters:', params);
       res.json(response.data);
     } catch (error) {
       // Handle errors
